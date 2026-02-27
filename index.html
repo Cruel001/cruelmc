@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CruelMC</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&family=Audiowide&display=swap" rel="stylesheet">
+
+<style>
+html{ scroll-behavior:smooth; }
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:url('background.png') no-repeat center center fixed;
+    background-size:cover;
+    font-family:'Exo 2', sans-serif;
+    color:white;
+}
+
+/* NAVBAR */
+.navbar{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:20px 0;
+    background:rgba(0,0,0,0.75);
+    backdrop-filter:blur(8px);
+    display:flex;
+    justify-content:center;
+    z-index:1000;
+}
+
+.nav-container{
+    display:flex;
+    gap:45px;
+}
+
+.nav-item{
+    color:white;
+    text-decoration:none;
+    font-size:17px;
+    font-weight:600;
+    letter-spacing:1px;
+    transition:0.3s;
+}
+
+.nav-item:hover{
+    color:#00ff88;
+}
+
+/* SECTIONS */
+.section{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:120px 20px;
+}
+
+/* PANEL */
+.panel{
+    background:rgba(0,0,0,0.65);
+    backdrop-filter:blur(6px);
+    padding:60px 80px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 40px rgba(0,0,0,0.8);
+    max-width:850px;
+}
+
+/* LOGO */
+.logo{
+    width:360px;
+    margin-bottom:30px;
+    transition:0.4s;
+}
+
+.logo:hover{
+    transform:scale(1.05);
+}
+
+/* TITLE */
+.title{
+    font-family:'Audiowide', sans-serif;
+    font-size:30px;
+    margin-bottom:25px;
+    letter-spacing:2px;
+    text-shadow:0 0 15px rgba(0,255,136,0.4);
+}
+
+/* IP */
+.ip-box{
+    display:inline-flex;
+    align-items:center;
+    background:#111;
+    padding:15px 22px;
+    border-radius:12px;
+    box-shadow:0 6px 0 black;
+    margin-bottom:20px;
+}
+
+.ip-text{
+    color:#00ff88;
+    font-size:18px;
+    margin-right:15px;
+    font-family:'Audiowide', sans-serif;
+    letter-spacing:1px;
+}
+
+.copy-btn{
+    background:#00aa44;
+    border:none;
+    padding:8px 14px;
+    border-radius:6px;
+    cursor:pointer;
+    font-family:'Exo 2', sans-serif;
+    font-weight:600;
+    transition:0.3s;
+}
+
+.copy-btn:hover{
+    background:#00cc55;
+    transform:scale(1.05);
+}
+
+/* DISCORD */
+.discord-btn{
+    display:inline-block;
+    background:#5865F2;
+    color:white;
+    padding:12px 30px;
+    border-radius:10px;
+    text-decoration:none;
+    font-size:16px;
+    transition:0.3s;
+    margin-bottom:25px;
+    font-weight:600;
+}
+
+.discord-btn:hover{
+    transform:scale(1.07);
+}
+
+/* SERVER STATUS */
+.server-status{
+    font-size:18px;
+    margin-top:10px;
+    font-weight:600;
+}
+
+.online{ color:#00ff88; }
+.offline{ color:#ff3c3c; }
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-item">Ana Səhifə</a>
+        <a href="qaydalar.html" class="nav-item">Qaydalar</a>
+    </div>
+</nav>
+
+<section id="home" class="section">
+    <div class="panel">
+
+        <img src="LOGOTEXT.png" class="logo">
+
+        <div class="title">
+            Azərbaycanın ilk Minecraft serverinə xoş gəlmisiniz
+        </div>
+
+        <div class="ip-box">
+            <div class="ip-text" id="ip">
+                cruelmc.aternos.me:34467
+            </div>
+            <button class="copy-btn" onclick="copyIP()">Kopyala</button>
+        </div>
+
+        <a href="https://discord.gg/PZDHWBKz" target="_blank" class="discord-btn">
+            Discord serverimizə qoşul
+        </a>
+
+        <div class="server-status" id="serverStatus">
+            Server yoxlanılır...
+        </div>
+
+    </div>
+</section>
+
+<script>
+function copyIP(){
+    const ip=document.getElementById("ip").innerText;
+    navigator.clipboard.writeText(ip);
+    alert("IP kopyalandı!");
+}
+
+const serverIP = "cruelmc.aternos.me";
+const serverPort = "34467";
+
+function checkServer(){
+    fetch(`https://mcapi.us/server/status?ip=${serverIP}&port=${serverPort}`)
+    .then(response => response.json())
+    .then(data => {
+        const box = document.getElementById("serverStatus");
+        if(data.online){
+            box.innerHTML =
+            "<span class='online'>● Server Aktivdir</span> | " +
+            "Oyunçular: " + data.players.now + " / " + data.players.max;
+        }else{
+            box.innerHTML =
+            "<span class='offline'>● Server Aktiv Deyil</span>";
+        }
+    })
+    .catch(()=>{
+        document.getElementById("serverStatus").innerHTML =
+        "<span class='offline'>Status yoxlanıla bilmədi</span>";
+    });
+}
+
+checkServer();
+setInterval(checkServer, 30000);
+</script>
+
+</body>
+</html>
