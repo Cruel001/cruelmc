@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CruelMC | Qaydalar</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;600;700&family=Audiowide&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html, body{
+    height:100%;
+}
+
+body{
+    background:url('background.png') no-repeat center center fixed;
+    background-size:cover;
+    font-family:'Exo 2', sans-serif;
+    color:white;
+    display:flex;
+    flex-direction:column;
+}
+
+/* NAVBAR */
+.navbar{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:20px 0;
+    background:rgba(0,0,0,0.75);
+    backdrop-filter:blur(8px);
+    display:flex;
+    justify-content:center;
+    z-index:1000;
+}
+
+.nav-container{
+    display:flex;
+    gap:45px;
+}
+
+.nav-item{
+    color:white;
+    text-decoration:none;
+    font-size:17px;
+    font-weight:600;
+    letter-spacing:1px;
+    transition:0.3s;
+}
+
+.nav-item:hover{
+    color:#00ff88;
+}
+
+/* MAIN FULL SCREEN */
+.main{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding-top:100px;
+    padding-bottom:60px;
+}
+
+/* PANEL */
+.panel{
+    background:rgba(0,0,0,0.65);
+    backdrop-filter:blur(8px);
+    padding:70px 90px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0 0 60px rgba(0,0,0,0.9);
+    max-width:900px;
+    width:90%;
+}
+
+/* TITLE */
+.title{
+    font-family:'Audiowide', sans-serif;
+    font-size:36px;
+    margin-bottom:40px;
+    letter-spacing:2px;
+    text-shadow:0 0 20px rgba(0,255,136,0.4);
+}
+
+/* RULE */
+.rule{
+    margin-bottom:20px;
+    font-size:19px;
+    line-height:1.8;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="nav-item">Ana Səhifə</a>
+        <a href="qaydalar.html" class="nav-item">Qaydalar</a>
+    </div>
+</nav>
+
+<div class="main">
+    <div class="panel">
+
+        <div class="title">Server Qaydaları</div>
+
+        <div class="rule">1️⃣ Hörmətli olun. Söyüş və təhqir qadağandır.</div>
+        <div class="rule">2️⃣ Cheat və hack istifadəsi qadağandır.</div>
+        <div class="rule">3️⃣ Oyunçuların əşyalarını icazəsiz götürmək olmaz.</div>
+        <div class="rule">4️⃣ Server və Discord reklamı etmək qadağandır.</div>
+        <div class="rule">5️⃣ Admin və moderator qərarlarına hörmət edin.</div>
+        <div class="rule">6️⃣ Bug tapdıqda rəhbərliyə bildirin.</div>
+        <div class="rule">7️⃣ Serverdə exploit və lag yaratmaq qadağandır.</div>
+
+    </div>
+</div>
+
+</body>
+</html>
